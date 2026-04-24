@@ -1,5 +1,31 @@
 # Coffee Spots — Development Log
 
+## 2026-04-24 — Session 2: GitHub + Maps + Product Thinking
+
+### GitHub Setup
+- Installed GitHub CLI, authenticated as xisu743-sys
+- Initialized git repo, pushed all code to github.com/xisu743-sys/coffee-spots
+- `lib/config.dart` added to .gitignore — API key never goes to GitHub
+
+### Address & Map Features Added
+- Detail screen: embedded OpenStreetMap tile with red pin, auto-geocodes address on load
+- Add screen: address autocomplete — suggestions appear as you type
+- Switched from OpenStreetMap Nominatim → Google Places API for better business search
+- Google Places API key restricted by package name + SHA-1 fingerprint for security
+
+### Product Thinking
+- User raised valid question: is this necessary vs just using Google Maps?
+- Conclusion: Google Maps saves a *place*, Coffee Spots saves a *memory*
+- Differentiators: Recommended By, Recommended Drink, personal photo, personal journal feel
+- User paused to think about product direction — decision pending next session
+
+### Next Steps (pending user decision)
+- Decide: keep current direction (personal journal) or pivot the product idea
+- If keeping: lean harder into the "memory" angle (story, friend, feeling)
+- Build release APK when direction is confirmed
+
+---
+
 ## 2026-04-24 — Session 1: Full Setup + MVP Built
 
 ### Environment Setup
