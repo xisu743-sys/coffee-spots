@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:uuid/uuid.dart';
+import '../config.dart';
 import '../db/database.dart';
 import '../models/coffee_shop.dart';
 
@@ -56,18 +57,25 @@ class _AddShopScreenState extends State<AddShopScreen> {
     });
   }
 
-  // Calls OpenStreetMap's free search API to find matching addresses
+  // Calls Google Places API to find matching businesses and addresses worldwide
   Future<List<dynamic>> _fetchSuggestions(String query) async {
     try {
       final encoded = Uri.encodeComponent(query);
       final response = await http.get(
         Uri.parse(
-            'https://nominatim.openstreetmap.org/search?q=$encoded&format=json&limit=4&addressdetails=1'),
-        headers: {'User-Agent': 'CoffeeSpots/1.0'},
+          'https://maps.googleapis.com/maps/api/place/autocomplete/json'
+          '?input=$encoded'
+          '&key=$googlePlacesApiKey'
+          '&language=zh'
+          '&types=establishment',
+        ),
       ).timeout(const Duration(seconds: 5));
 
       if (response.statusCode == 200) {
-        return json.decode(response.body) as List;
+        final data = json.decode(response.body);
+        if (data['status'] == 'OK') {
+          return data['predictions'] as List;
+        }
       }
     } catch (_) {}
     return [];
@@ -176,7 +184,7 @@ class _AddShopScreenState extends State<AddShopScreen> {
       ),
       child: Column(
         children: _addressSuggestions.map((suggestion) {
-          final name = suggestion['display_name'] as String;
+          final name = suggestion['description'] as String;
           return InkWell(
             borderRadius: BorderRadius.circular(12),
             onTap: () {
