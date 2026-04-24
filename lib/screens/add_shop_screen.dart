@@ -66,8 +66,7 @@ class _AddShopScreenState extends State<AddShopScreen> {
           'https://maps.googleapis.com/maps/api/place/autocomplete/json'
           '?input=$encoded'
           '&key=$googlePlacesApiKey'
-          '&language=zh'
-          '&types=establishment',
+          '&language=zh',
         ),
       ).timeout(const Duration(seconds: 5));
 
