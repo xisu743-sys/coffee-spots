@@ -38,6 +38,9 @@ dependencies:
   url_launcher: ^6.3.1     # opens Google Maps links
   image_picker: ^1.1.2     # lets user pick photos from gallery
   uuid: ^4.5.1             # generates unique ID for each shop
+  flutter_map: ^7.0.2      # shows an interactive map inside the app
+  latlong2: ^0.9.1         # lat/lng coordinate types for the map
+  http: ^1.2.2             # makes web requests (for address search)
 
 dev_dependencies:
   flutter_test:
